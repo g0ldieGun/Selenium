@@ -8,11 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.nio.file.Paths;
 import java.time.Duration;
 
+import static base.configuration.EnvPropertiesDefaults.*;
+
 public class AbstractWebDriverSupport {
     private static WebDriver driver;
 
-    private static final String EMAIL = "stanislav.workspace@gmail.com";
-    private static final String PASSWORD = "Stasio";
+    private static final String EMAIL = WEB_EMAIL;
+    private static final String PASSWORD = WEB_PASSWORD;
 
     private static final Duration TIMEOUT_WAIT = Duration.ofSeconds(10);
 
@@ -49,6 +51,7 @@ public class AbstractWebDriverSupport {
     public static String getDefaultEmail(){
         return EMAIL;
     }
+
     public static String getDefaultPassword(){
         return PASSWORD;
     }

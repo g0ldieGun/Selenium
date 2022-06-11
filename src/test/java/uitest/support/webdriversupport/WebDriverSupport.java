@@ -4,12 +4,12 @@ import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import uitest.support.webpage.WebPageFixture;
 
+import static base.configuration.EnvPropertiesDefaults.START_PAGE;
+
 public class WebDriverSupport extends AbstractWebDriverSupport {
 
-    private static final String automationLink = "http://automationpractice.com/index.php";
-
     public void auth() {
-        initializeWebDriver(automationLink);
+        initializeWebDriver(START_PAGE);
 
         WebPageFixture webPageFixture = new WebPageFixture(getDriver());
 
