@@ -3,10 +3,13 @@ package uitest.support.webdriversupport;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Properties;
 
 import static base.configuration.EnvPropertiesDefaults.*;
 
@@ -25,7 +28,10 @@ public class AbstractWebDriverSupport {
         if (driver == null) {
             System.out.println("New Driver instance created");
 
-            driver = new ChromeDriver();
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*");
+            driver = new ChromeDriver(options);
             driver.get(link);
             driver.manage().window().maximize();
         }
@@ -41,6 +47,14 @@ public class AbstractWebDriverSupport {
         if(driver != null) {
             driver.quit();
             driver = null;
+        }
+
+        String[] command = {"cmd.exe", "/C", "Start", Paths.get(".").toAbsolutePath() + "\\target\\test-classes\\webdriver\\" + "killChrome.bat"};
+        try {
+            Process p =  Runtime.getRuntime().exec(command);
+            p.destroy();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

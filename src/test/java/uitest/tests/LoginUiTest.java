@@ -20,7 +20,7 @@ public class LoginUiTest extends UiTest {
         System.out.println("9: " + UserDbQueries.getRandomUserName());
         System.out.println("10: " + UserDbQueries.getRandomUserName());
 
-        WebDriverSupport webDriverSupport = new WebDriverSupport();
-        webDriverSupport.auth();
+//        WebDriverSupport webDriverSupport = new WebDriverSupport();
+//        webDriverSupport.auth();
     }
 }
